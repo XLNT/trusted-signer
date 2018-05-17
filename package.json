@@ -1,0 +1,40 @@
+{
+  "name": "@xlnt/trusted-signer",
+  "version": "0.0.1",
+  "description": "Sign and verify signatures using web3 as a microservice.",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "npm run build-ts && npm run tslint",
+    "ts-start": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "test": "mocha -r ts-node/register test/**/*.spec.ts",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint --project ."
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": "https://github.com/XLNT/trusted-signer",
+  "keywords": [
+    "ethereum"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/XLNT/trusted-signer/issues"
+  },
+  "homepage": "https://github.com/XLNT/trusted-signer#readme",
+  "peerDependencies": {},
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.0"
+  },
+  "devDependencies": {
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
