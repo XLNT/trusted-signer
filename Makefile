@@ -1,6 +1,7 @@
 SHELL:?/bin/bash
 
 build:
+	yarn run build
 	docker build -t shrugs/trusted-signer:latest .
 
 push:
