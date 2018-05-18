@@ -23,15 +23,15 @@ docker run -e "PRIVATE_KEY=0xabcd" -e "PORT=3002" -p 3002:3002 shrugs/trusted-si
 Request
 ```
 {
-	"message": "yay digital things\n\ni have code: ropdyl-argnav\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nand this is me: 0x7E75EdaBCE163EFee3E383Fc7C0a21720367f463",
-	"signature": "0xde61021f76f093b8588cd20c7143f7940e02f9c3ed127f726193809b7a92957735bffa08827a1d8e4eb75d248010c70054cb56b201a5d2ba6d86ecb257e9b5481b"
+  "message": "yay digital things\n\ni have code: ropdyl-argnav\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nand this is me: 0x7E75EdaBCE163EFee3E383Fc7C0a21720367f463",
+  "signature": "0xde61021f76f093b8588cd20c7143f7940e02f9c3ed127f726193809b7a92957735bffa08827a1d8e4eb75d248010c70054cb56b201a5d2ba6d86ecb257e9b5481b"
 }
 ```
 
 Response
 ```
 {
-    "account": "0x7E75EdaBCE163EFee3E383Fc7C0a21720367f463"
+  "account": "0x7E75EdaBCE163EFee3E383Fc7C0a21720367f463"
 }
 ```
 
@@ -44,13 +44,13 @@ Give it your message as a hex string.
 Request
 ```
 {
-	"message": "0x09d38b730edd61dc917e2c365e24c2312193e81e7e75edabce163efee3e383fc7c0a21720367f463"
+  "message": "0x09d38b730edd61dc917e2c365e24c2312193e81e7e75edabce163efee3e383fc7c0a21720367f463"
 }
 ```
 
 Response
 ```
 {
-    "signature": "0xf33ad4fd8a4b2a442d34afd445720c07f42c431d881d15ea1af883dd34383a9721eae1be166e456410137df313c44e4c8e15764884d9646b76fbaceabe8b651d1b"
+  "signature": "0xf33ad4fd8a4b2a442d34afd445720c07f42c431d881d15ea1af883dd34383a9721eae1be166e456410137df313c44e4c8e15764884d9646b76fbaceabe8b651d1b"
 }
 ```
