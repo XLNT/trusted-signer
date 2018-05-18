@@ -44,9 +44,7 @@ Give it your message as a hex string.
 Request
 ```
 {
-	"message": "{
 	"message": "0x09d38b730edd61dc917e2c365e24c2312193e81e7e75edabce163efee3e383fc7c0a21720367f463"
-}"
 }
 ```
 
