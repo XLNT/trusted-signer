@@ -77,4 +77,3 @@ const root = router(
 )
 
 export default root
-// micro(root).listen(process.env.PORT || 3000)
