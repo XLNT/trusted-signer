@@ -1,10 +1,9 @@
-import dotenv = require('dotenv')
-dotenv.config()
-
-import Koa = require('koa')
-import bodyParser = require('koa-bodyparser')
-import logger = require('koa-logger')
-import Router = require('koa-router')
+import { IncomingMessage, ServerResponse } from 'http'
+import {
+  json,
+  send,
+} from 'micro'
+import { post, router } from 'microrouter'
 
 import Account = require('eth-lib/lib/account')
 import web3Utils = require('web3-utils')
@@ -21,63 +20,61 @@ const prefixMessage = (data) => {
   return web3Utils.keccak256(ethMessage)
 }
 
-const main = async () => {
-  const app = new Koa()
-  const router = new Router()
+const recover = async (req: IncomingMessage, res: ServerResponse) => {
+  const {
+    message,
+    signature,
+  } = await json(req)
 
-  router.post('/recover', async (ctx) => {
-    const {
-      message,
-      signature,
-    } = ctx.request.body
+  const messageHash = prefixMessage(message)
 
-    const messageHash = prefixMessage(message)
+  const account = await Account.recover(
+    messageHash,
+    signature,
+  )
 
-    const account = await Account.recover(
-      messageHash,
-      signature,
-    )
-
-    ctx.body = {
-      account,
-    }
+  send(res, 200, {
+    account,
   })
-
-  router.post('/sign', async (ctx) => {
-    const {
-      message,
-      // ^ 0xabcd
-    } = ctx.request.body
-
-    const realMessage = web3Utils.soliditySha3(message)
-    // ^ the hash of this data - should be removed for generic signatures
-    const hash = prefixMessage(realMessage)
-    // ^ keccack256(...Ethereum Signed Message:...)
-    const signature = await Account.sign(
-      hash,
-      PRIVATE_KEY,
-    )
-    // ^0xabcd
-
-    ctx.body = {
-      signature,
-    }
-  })
-
-  app
-    .use(bodyParser())
-    .use(logger())
-    .use(router.routes())
-    .use(router.allowedMethods())
-
-  app.listen(PORT, () => {
-    console.log(`[trusted-signer] running on port ${PORT}`)
-  })
-
 }
 
-main()
-  .catch((error) => {
-    console.error(error)
-    process.exit(1)
+const doSign = async (res: ServerResponse, message: string) => {
+  const signature = await Account.sign(
+    message,
+    PRIVATE_KEY,
+  )
+  // ^0xabcd
+
+  send(res, 200, {
+    signature,
   })
+}
+
+const sign = async (req: IncomingMessage, res: ServerResponse) => {
+  const {
+    message,
+  } = await json(req)
+
+  await doSign(res, message)
+}
+
+const signHash = async (req: IncomingMessage, res: ServerResponse) => {
+  const {
+    message,
+  } = await json(req)
+
+  const realMessage = web3Utils.soliditySha3(message)
+  // ^ the hash of this data - should be removed for generic signatures
+  const hash = prefixMessage(realMessage)
+  // ^ keccack256(...Ethereum Signed Message:...)
+  await doSign(res, hash)
+}
+
+const root = router(
+  post('/recover', recover),
+  post('/sign', sign),
+  post('/signhash', signHash),
+)
+
+export default root
+// micro(root).listen(process.env.PORT || 3000)
