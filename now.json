@@ -1,0 +1,5 @@
+{
+  "env": {
+    "PRIVATE_KEY": "@private-key"
+  }
+}
