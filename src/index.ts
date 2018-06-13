@@ -1,3 +1,4 @@
+import withApiAuth from '@xlnt/micro-api-auth'
 import { IncomingMessage, ServerResponse } from 'http'
 import {
   json,
@@ -69,10 +70,10 @@ const signHash = async (req: IncomingMessage, res: ServerResponse) => {
   await doSign(res, hash)
 }
 
-const root = router(
+const root = withApiAuth()(router(
   post('/recover', recover),
   post('/sign', sign),
   post('/signhash', signHash),
-)
+))
 
 export default root
