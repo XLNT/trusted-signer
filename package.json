@@ -42,10 +42,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "now": {
-    "engines": {
-      "node": "9.11.1"
-    }
   }
 }

@@ -1,5 +1,8 @@
 {
   "env": {
     "PRIVATE_KEY": "@trusted-signer-private-key"
+  },
+  "engines": {
+    "node": "9.11.1"
   }
 }
