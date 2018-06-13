@@ -11,7 +11,7 @@ It's a dockerfile, so run something like
 ```bash
 yarn run build
 docker build -t shrugs/trusted-signer:latest .
-docker run -e "PRIVATE_KEY=0xabcd" -e "PORT=3002" -p 3002:3002 shrugs/trusted-signer:latest
+docker run -e "PRIVATE_KEY=0xabcd" -p 3000:3000 shrugs/trusted-signer:latest
 ```
 
 (the first two commands are in `make build`)

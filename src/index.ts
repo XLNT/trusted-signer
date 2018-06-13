@@ -9,7 +9,6 @@ import Account = require('eth-lib/lib/account')
 import web3Utils = require('web3-utils')
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
-const PORT = process.env.PORT || 3000
 
 const prefixMessage = (data) => {
   const message = web3Utils.isHexStrict(data) ? web3Utils.hexToBytes(data) : data
