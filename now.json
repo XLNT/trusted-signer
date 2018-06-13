@@ -1,7 +1,20 @@
 {
   "env": {
-    "PRIVATE_KEY": "@trusted-signer-private-key"
+    "PRIVATE_KEY": "@trusted-signer-private-key",
+    "API_KEYS": "@kata-api-keys"
   },
+  "alias": "trusted-signer.now.xlnt.co",
+  "scale": {
+    "sfo1": {
+      "min": 1,
+      "max": 1
+    }
+  },
+  "type": "npm",
+  "files": [
+    "tsconfig.json",
+    "src"
+  ],
   "engines": {
     "node": "9.11.1"
   }
