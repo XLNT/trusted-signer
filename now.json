@@ -1,5 +1,5 @@
 {
   "env": {
-    "PRIVATE_KEY": "@private-key"
+    "PRIVATE_KEY": "@trusted-signer-private-key"
   }
 }
