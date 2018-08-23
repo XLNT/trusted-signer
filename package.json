@@ -13,9 +13,10 @@
     "docker:build": "docker build -t shrugs/trusted-signer:latest .",
     "docker:push": "docker push shrugs/trusted-signer:latest",
     "deploy": "yarn run build && yarn run docker-build && yarn run docker-push",
-    "now:deploy": "now",
+    "now": "now",
     "now:alias": "now alias",
-    "now:clean": "now rm @xlnt/trusted-signer --safe --yes"
+    "now:clean": "now rm @xlnt/trusted-signer --safe --yes",
+    "now:deploy": "yarn run build && yarn run now && yarn run now:alias && yarn run now:clean"
   },
   "files": [
     "lib"
