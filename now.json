@@ -2,7 +2,7 @@
   "env": {
     "PRIVATE_KEY": "@trusted-signer-private-key",
     "API_KEYS": "@kata-api-keys",
-    "NODE_ENDPOINT": "@kata-node-endpoint"
+    "NODE_ENDPOINT": "https://mainnet.infura.io"
   },
   "alias": "trusted-signer.now.xlnt.co",
   "scale": {
