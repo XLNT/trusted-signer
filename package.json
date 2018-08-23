@@ -10,9 +10,12 @@
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint --project .",
-    "docker-build": "docker build -t shrugs/trusted-signer:latest .",
-    "docker-push": "docker push shrugs/trusted-signer:latest",
-    "deploy": "yarn run build && yarn run docker-build && yarn run docker-push"
+    "docker:build": "docker build -t shrugs/trusted-signer:latest .",
+    "docker:push": "docker push shrugs/trusted-signer:latest",
+    "deploy": "yarn run build && yarn run docker-build && yarn run docker-push",
+    "now:deploy": "now",
+    "now:alias": "now alias",
+    "now:clean": "now rm @xlnt/trusted-signer --safe --yes"
   },
   "files": [
     "lib"
