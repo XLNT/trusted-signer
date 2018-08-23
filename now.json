@@ -1,7 +1,8 @@
 {
   "env": {
     "PRIVATE_KEY": "@trusted-signer-private-key",
-    "API_KEYS": "@kata-api-keys"
+    "API_KEYS": "@kata-api-keys",
+    "NODE_ENDPOINT": "@kata-node-endpoint"
   },
   "alias": "trusted-signer.now.xlnt.co",
   "scale": {
@@ -16,6 +17,6 @@
     "src"
   ],
   "engines": {
-    "node": "9.11.1"
+    "node": "10.0.0"
   }
 }
