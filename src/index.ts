@@ -5,6 +5,7 @@ import {
   json,
   send,
 } from 'micro'
+import visualize = require('micro-visualize')
 import { post, router } from 'microrouter'
 
 import Account = require('eth-lib/lib/account')
@@ -80,11 +81,11 @@ const signAndSendTx = async (req: IncomingMessage, res: ServerResponse) => {
   })
 }
 
-const root = withApiAuth()(router(
+const root = visualize(withApiAuth()(router(
   post('/recover', recover),
   post('/sign', sign),
   post('/signhash', signHash),
   post('/sign-and-send-tx', signAndSendTx),
-))
+)))
 
 export default root

@@ -1354,7 +1354,7 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
 
-jsome@2.5.0:
+jsome@2.5.0, jsome@^2.3.25:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/jsome/-/jsome-2.5.0.tgz#5e417eef4341ffeb83ee8bfa9265b36d56fe49ed"
   dependencies:
@@ -1483,6 +1483,13 @@ micro-dev@^3.0.0:
     pkg-up "2.0.0"
     pretty-error "2.1.1"
     string-length "2.0.0"
+
+micro-visualize@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/micro-visualize/-/micro-visualize-3.0.1.tgz#f8ffee2419864a9a3d27c44a46d85fb738d08c15"
+  dependencies:
+    chalk "^1.1.3"
+    jsome "^2.3.25"
 
 micro@^9.3.2:
   version "9.3.2"
