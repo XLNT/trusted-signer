@@ -18,19 +18,21 @@ const NODE_ENDPOINT = process.env.NODE_ENDPOINT
 const ethNode = RPC(NODE_ENDPOINT)
 const me = Account.fromPrivate(PRIVATE_KEY)
 
-const prefixMessage = (data) => {
-  const message = web3Utils.isHexStrict(data) ? web3Utils.hexToBytes(data) : data
-  const messageBuffer = Buffer.from(message)
-  const preamble = '\x19Ethereum Signed Message:\n' + message.length
-  const preambleBuffer = Buffer.from(preamble)
-  const ethMessage = Buffer.concat([preambleBuffer, messageBuffer])
-  return web3Utils.keccak256(ethMessage)
+console.log(`operating as: ${me.address}`)
+
+// messageHex = '0xdeadbeef'
+function toEthSignedMessageHash (messageHex) {
+  const messageBuffer = Buffer.from(messageHex.substring(2), 'hex')
+  const prefix = Buffer.from(
+    `\u0019Ethereum Signed Message:\n${messageBuffer.length}`,
+  )
+  return web3Utils.keccak256(Buffer.concat([prefix, messageBuffer]))
 }
 
 const recover = async (req: IncomingMessage, res: ServerResponse) => {
   const { message, signature } = await json(req)
 
-  const messageHash = prefixMessage(message)
+  const messageHash = toEthSignedMessageHash(web3Utils.toHex(message))
   const account = await Account.recover(messageHash, signature)
 
   send(res, 200, {
@@ -40,7 +42,6 @@ const recover = async (req: IncomingMessage, res: ServerResponse) => {
 
 const doSign = async (res: ServerResponse, message: string) => {
   const signature = await Account.sign(message, me.privateKey)
-  // ^0xabcd
 
   send(res, 200, {
     signature,
@@ -57,8 +58,7 @@ const signHash = async (req: IncomingMessage, res: ServerResponse) => {
   const { message } = await json(req)
 
   const realMessage = web3Utils.soliditySha3(message)
-  // ^ the hash of this data - should be removed for generic signatures
-  const hash = prefixMessage(realMessage)
+  const hash = toEthSignedMessageHash(realMessage)
   // ^ keccack256(...Ethereum Signed Message:...)
   await doSign(res, hash)
 }
