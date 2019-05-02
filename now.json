@@ -1,4 +1,5 @@
 {
+  "version": 1,
   "env": {
     "PRIVATE_KEY": "@trusted-signer-private-key",
     "API_KEYS": "@kata-api-keys",
@@ -12,11 +13,11 @@
     }
   },
   "type": "npm",
-  "files": [
-    "tsconfig.json",
-    "src"
-  ],
+  "files": ["tsconfig.json", "src"],
   "engines": {
     "node": "10.0.0"
+  },
+  "github": {
+    "enabled": false
   }
 }
